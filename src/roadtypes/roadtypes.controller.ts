@@ -20,6 +20,7 @@ export class RoadTypesController {
   constructor(private readonly roadTypesService: RoadTypesService) {}
 
   @Roles('admin')
+  @ApiBearerAuth()
   @Post()
   create(@Body() dto: CreateRoadTypeDto) {
     return this.roadTypesService.create(dto);
