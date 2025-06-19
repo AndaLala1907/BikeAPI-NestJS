@@ -12,6 +12,8 @@ import { RoadTypesModule } from './roadtypes/roadtypes.module';
 import { SpeedTypesModule } from './speedtypes/speedtypes.module';
 import { StatisticsModule } from './statistics/statistics.module';
 import { HomeModule } from './home/home.module';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
 
 @Module({
   imports: [
@@ -29,5 +31,7 @@ import { HomeModule } from './home/home.module';
     StatisticsModule,
     HomeModule,
   ],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
