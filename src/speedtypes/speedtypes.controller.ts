@@ -12,6 +12,10 @@ import { CreateSpeedTypeDto } from './dto/create-speedtype.dto';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { RolesGuard } from '../auth/guards/roles.guard';
 import { Roles } from '../auth/decorators/roles.decorator';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+
+@ApiTags('SpeedTypes')
+@ApiBearerAuth()
 @UseGuards(JwtAuthGuard, RolesGuard)
 @Controller('speedtypes')
 export class SpeedTypesController {
@@ -23,12 +27,14 @@ export class SpeedTypesController {
     return this.speedTypesService.create(dto);
   }
 
-  @Get() // Asnjë dekorator @Roles këtu
+  @Roles('admin')
+  @Get()
   findAll() {
     return this.speedTypesService.findAll();
   }
 
-  @Get(':id') // Asnjë dekorator @Roles këtu
+  @Roles('admin')
+  @Get(':id')
   findOne(@Param('id') id: string) {
     return this.speedTypesService.findOne(id);
   }

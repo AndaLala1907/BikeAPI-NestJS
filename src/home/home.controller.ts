@@ -1,7 +1,7 @@
 import { Controller, Get, UseGuards, Req } from '@nestjs/common';
 import { HomeService } from './home.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
 import { Request } from 'express';
 
 interface AuthenticatedRequest extends Request {
@@ -27,8 +27,8 @@ export class HomeController {
   }
 
   @Get('overview')
-  @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
+  @UseGuards(JwtAuthGuard)
   getDashboard(@Req() req: AuthenticatedRequest) {
     return this.homeService.getDashboardOverview(req.user.sub);
   }
