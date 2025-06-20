@@ -14,6 +14,7 @@ import { CreateJourneyDto } from './dto/create-journey.dto';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
 import { BadRequestException } from '@nestjs/common';
+import { EndJourneyDto } from './dto/end-journey.dto';
 
 @ApiTags('Journeys')
 @ApiBearerAuth()
@@ -48,8 +49,8 @@ export class JourneyController {
   }
 
   @Patch(':id/end')
-  endJourney(@Param('id') id: string, @Body() body: { endTime?: string }) {
-    const endTime = body.endTime;
+  endJourney(@Param('id') id: string, @Body() body: EndJourneyDto) {
+    const endTime: string = body.endTime;
     if (!endTime) {
       throw new BadRequestException('endTime is required');
     }
