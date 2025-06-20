@@ -12,6 +12,7 @@ import { StatisticsService } from './statistics.service';
 import { UpdateStatisticDto } from './dto/update-statistic.dto';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { GenerateStatisticsDto } from './dto/generate-statistics.dto';
 
 @ApiTags('Statistics')
 @ApiBearerAuth()
@@ -22,8 +23,8 @@ export class StatisticsController {
 
   @Post()
   @ApiOperation({ summary: 'Generate statistic from user journeys' })
-  createFromUser(@Body('user_id') userId: string) {
-    return this.statisticsService.createFromJourneys(userId);
+  createFromUser(@Body() dto: GenerateStatisticsDto) {
+    return this.statisticsService.createFromJourneys(dto.user_id);
   }
 
   @Get()
