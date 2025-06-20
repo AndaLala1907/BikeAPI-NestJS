@@ -47,7 +47,7 @@ export class JourneyController {
   }
 
   @Patch(':id/end')
-  endJourney(@Param('id') id: string, @Body('endTime') endTime: string) {
-    return this.journeyService.endJourney(id, endTime);
+  endJourney(@Param('id') id: string, @Body() body: { endTime: string }) {
+    return this.journeyService.endJourney(id, body.endTime);
   }
 }
