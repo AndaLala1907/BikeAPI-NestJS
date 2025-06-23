@@ -27,7 +27,7 @@ export class HomeService {
       (acc, j) => acc + (j.caloriesBurned || 0),
       0,
     );
-    const totalDistance = journeys.length * 2; // nëse s’ke fushë të distancës, përdor llogari të thjeshtuar
+    const totalDistance = journeys.length * 2;
     const totalDuration = journeys.reduce((acc, j) => {
       if (!j.startTime || !j.endTime) return acc;
       const start = new Date(j.startTime).getTime();

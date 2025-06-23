@@ -13,7 +13,7 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
     info: unknown,
     context: ExecutionContext,
   ): TUser {
-    console.log('JwtAuthGuard aktivizuar:', {
+    console.log('JwtAuthGuard enabled:', {
       err,
       user,
       info,

@@ -29,13 +29,12 @@ export class RolesGuard implements CanActivate {
     console.log('Required Roles:', requiredRoles);
     console.log('User from JWT:', user);
 
-    // 🟢 Nëse nuk ka fare @Roles → lejo kalimin
     if (!requiredRoles || requiredRoles.length === 0) {
       return true;
     }
 
     if (!user || !user.role) {
-      console.log('Nuk u gjet user ose roli në JWT!');
+      console.log('User or role not found in JWT!');
       return false;
     }
 
