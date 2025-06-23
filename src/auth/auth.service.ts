@@ -30,7 +30,7 @@ export class AuthService {
       password: hashedPassword,
     });
 
-    return await user.save(); // ❗ Kthe vetëm user-in e regjistruar, pa token
+    return await user.save();
   }
 
   async login(loginDto: LoginDto) {
