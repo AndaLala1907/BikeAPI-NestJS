@@ -9,4 +9,5 @@ import { Log, LogSchema } from '../logs/schemas/log.schema';
   controllers: [WebhooksController],
   providers: [WebhooksService],
 })
+// module class for webhooks
 export class WebhooksModule {}

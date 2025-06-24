@@ -5,13 +5,14 @@ import { UsersModule } from '../users/users.module';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './jwt.strategy';
 import { PassportModule } from '@nestjs/passport';
-
+// module that bundles auth-related components
+// includes controller, service, strategy and JWT setup
 @Module({
   imports: [
     UsersModule,
     JwtModule.register({
       secret: process.env.JWT_SECRET || 'SECRET_KEY',
-      signOptions: { expiresIn: '7d' },
+      signOptions: { expiresIn: '7d' }, //token valid for 7 days
     }),
     PassportModule,
   ],

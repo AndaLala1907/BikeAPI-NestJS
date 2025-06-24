@@ -24,4 +24,5 @@ import { UsersModule } from '../users/users.module';
   controllers: [HomeController],
   providers: [HomeService],
 })
+// home module providing dashboard and landing page logic
 export class HomeModule {}

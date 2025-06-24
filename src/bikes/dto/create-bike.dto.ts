@@ -1,24 +1,39 @@
 import { ApiProperty } from '@nestjs/swagger';
-
+import { IsString, IsNumber, IsMongoId, IsNotEmpty } from 'class-validator';
+// DTO for creating a new bike
 export class CreateBikeDto {
-  @ApiProperty({ example: 'Mountain Bike' })
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
   name: string;
 
-  @ApiProperty({ example: 'mountain' })
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
   type: string;
 
-  @ApiProperty({ example: 10.5 })
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
   weight: number;
 
-  @ApiProperty({ example: '665f5d6c1e785cda274a2bbf' })
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
   user_id: string;
 
-  @ApiProperty({ example: '665f5d6c1e785cda274a2bbf' })
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
   speedType: string;
 
-  @ApiProperty({ example: '665f5d6c1e785cda274a2bbf' })
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
   roadType: string;
 
-  @ApiProperty({ example: 'BC123456789' })
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
   barcode: string;
 }

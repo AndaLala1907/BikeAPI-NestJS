@@ -5,7 +5,7 @@ import {
   IsString,
   IsNumber,
 } from 'class-validator';
-
+// DTO for creating a journey
 export class CreateJourneyDto {
   @IsMongoId()
   user_id: string;

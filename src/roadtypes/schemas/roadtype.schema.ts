@@ -4,6 +4,7 @@ import { Document } from 'mongoose';
 export type RoadTypeDocument = RoadType & Document;
 
 @Schema({ timestamps: true })
+// mongoose schema for road types
 export class RoadType {
   @Prop()
   name: string;

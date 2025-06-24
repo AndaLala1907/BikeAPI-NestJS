@@ -1,5 +1,5 @@
 import { IsString, MinLength, IsOptional, IsNumber } from 'class-validator';
-
+// DTO for creating a road type with optional description and multiplier
 export class CreateRoadTypeDto {
   @IsString()
   @MinLength(2)

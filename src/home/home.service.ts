@@ -7,6 +7,7 @@ import { Journey, JourneyDocument } from '../journeys/schemas/journey.schema';
 import { Device, DeviceDocument } from '../devices/schemas/device.schema';
 
 @Injectable()
+// service to handle dashboard overview data for logged-in users
 export class HomeService {
   constructor(
     @InjectModel(User.name) private userModel: Model<UserDocument>,
@@ -14,7 +15,7 @@ export class HomeService {
     @InjectModel(Device.name) private deviceModel: Model<DeviceDocument>,
     @InjectModel(Journey.name) private journeyModel: Model<JourneyDocument>,
   ) {}
-
+  // collect dashboard data: user info, bikes, devices, journey stats
   async getDashboardOverview(userId: string) {
     const user = await this.userModel.findById(userId);
     if (!user) throw new NotFoundException('User not found');
@@ -27,12 +28,12 @@ export class HomeService {
       (acc, j) => acc + (j.caloriesBurned || 0),
       0,
     );
-    const totalDistance = journeys.length * 2;
+    const totalDistance = journeys.length * 2; //example sttic distance
     const totalDuration = journeys.reduce((acc, j) => {
       if (!j.startTime || !j.endTime) return acc;
       const start = new Date(j.startTime).getTime();
       const end = new Date(j.endTime).getTime();
-      return acc + Math.max(0, (end - start) / 60000);
+      return acc + Math.max(0, (end - start) / 60000); //in minutes
     }, 0);
 
     const bikeTypes = bikes.map((b) => b.type);
@@ -54,7 +55,7 @@ export class HomeService {
       devices.length > 0
         ? {
             deviceId: devices[0].deviceId,
-            status: devices[0].isActive ? 'Paired' : 'Unpaired',
+            status: devices.length > 0 ? 'Paired' : 'Unpaired',
           }
         : null;
 

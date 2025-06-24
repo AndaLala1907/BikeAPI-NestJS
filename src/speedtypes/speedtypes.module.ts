@@ -1,4 +1,3 @@
-// src/speedtypes/speedtypes.module.ts
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { SpeedTypesService } from './speedtypes.service';
@@ -15,4 +14,5 @@ import { SpeedType, SpeedTypeSchema } from './schemas/speedtype.schema';
   providers: [SpeedTypesService],
   exports: [SpeedTypesService],
 })
+// module for managing speed types
 export class SpeedTypesModule {}

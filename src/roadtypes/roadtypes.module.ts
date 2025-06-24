@@ -14,4 +14,5 @@ import { RoadType, RoadTypeSchema } from './schemas/roadtype.schema';
   providers: [RoadTypesService],
   exports: [RoadTypesService],
 })
+// module for managing road types
 export class RoadTypesModule {}

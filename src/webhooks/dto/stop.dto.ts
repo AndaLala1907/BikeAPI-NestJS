@@ -1,5 +1,5 @@
 import { IsMongoId, IsNotEmpty, IsNumber } from 'class-validator';
-
+// DTO to stop a journey and finalize the log
 export class StopDto {
   @IsMongoId()
   @IsNotEmpty()

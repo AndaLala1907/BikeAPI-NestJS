@@ -6,14 +6,16 @@ import { JwtService } from '@nestjs/jwt';
 import { User, UserDocument } from '../users/schemas/user.schema';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
-
+// service for handling user registration and login
 @Injectable()
 export class AuthService {
   constructor(
     @InjectModel(User.name) private readonly userModel: Model<UserDocument>,
     private readonly jwtService: JwtService,
   ) {}
-
+  // register a new user
+  //- check if user exists
+  // -hash password and save user
   async register(registerDto: RegisterDto) {
     const { email, password, ...rest } = registerDto;
 
@@ -33,6 +35,9 @@ export class AuthService {
     return await user.save();
   }
 
+  // authenticate user and return JWT token
+  //-validate email and password
+  // -sign JWT with user info
   async login(loginDto: LoginDto) {
     const { email, password } = loginDto;
 

@@ -14,9 +14,10 @@ interface AuthenticatedRequest extends Request {
 
 @ApiTags('Home')
 @Controller('home')
+// controller for public landing and authenticated dashboard
 export class HomeController {
   constructor(private readonly homeService: HomeService) {}
-
+  // public GET endpoint (unauthenticated)
   @Get('landing')
   getLandingPage() {
     return {
@@ -25,7 +26,7 @@ export class HomeController {
       callToAction: 'Log in or Get Started to begin your ride!',
     };
   }
-
+  // Authenticated GET endpoint for user overview
   @Get('overview')
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)

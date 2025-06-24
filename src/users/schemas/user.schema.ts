@@ -17,6 +17,8 @@ export class User {
 
   @Prop({ enum: ['user', 'admin'], default: 'user' })
   role: string;
+  @Prop()
+  deletedAt?: Date;
 }
 
 export type UserDocument = User & Document<Types.ObjectId>;

@@ -7,11 +7,12 @@ import { PingDto } from './dto/ping.dto';
 import { StopDto } from './dto/stop.dto';
 
 @Injectable()
+// service to handle incoming webhooks from devices (start,ping,stop)
 export class WebhooksService {
   constructor(
     @InjectModel(Log.name) private readonly logModel: Model<LogDocument>,
   ) {}
-
+  // start journey: creates a new log with intital coordinate
   async start(dto: StartDto) {
     const log = new this.logModel({
       user_id: dto.user_id,
@@ -23,7 +24,7 @@ export class WebhooksService {
 
     return log.save();
   }
-
+  // ping from device: appends new coordinates to existing log
   async ping(dto: PingDto) {
     const log = await this.logModel.findById(dto.log_id);
     if (!log) throw new NotFoundException('Log not found');
@@ -40,7 +41,7 @@ export class WebhooksService {
 
     return log.save();
   }
-
+  // stop journey: finalizes the log with final coordinate and sets ended = true
   async stop(dto: StopDto) {
     const log = await this.logModel.findById(dto.log_id);
     if (!log) throw new NotFoundException('Log not found');

@@ -2,8 +2,9 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 
 export type LogDocument = Log & Document;
-
+//
 @Schema({ timestamps: true })
+// mongoose schema for logs: stores journey actions with optional coordinates
 export class Log {
   @Prop({ type: Types.ObjectId, ref: 'User', required: true })
   user_id: string;
@@ -11,7 +12,7 @@ export class Log {
   @Prop({ type: Types.ObjectId, ref: 'Journey', required: true })
   journey_id: string;
 
-  @Prop({ type: [[Number]], default: [] })
+  @Prop({ type: [[Number]], default: [] }) //optional coordinates[lng, lat]
   coordinates: number[][];
 
   @Prop({ default: false })

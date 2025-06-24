@@ -14,7 +14,6 @@ import { StatisticsModule } from './statistics/statistics.module';
 import { HomeModule } from './home/home.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -34,4 +33,5 @@ import { AppService } from './app.service';
   controllers: [AppController],
   providers: [AppService],
 })
+// main application module importing all feature modules
 export class AppModule {}

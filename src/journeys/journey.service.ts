@@ -5,7 +5,7 @@ import { Journey, JourneyDocument } from './schemas/journey.schema';
 import { CreateJourneyDto } from './dto/create-journey.dto';
 import { Bike, BikeDocument } from '../bikes/schemas/bike.schema';
 import { Device, DeviceDocument } from '../devices/schemas/device.schema';
-
+// service for managing journey logic: create, end, ping, delete
 @Injectable()
 export class JourneyService {
   constructor(
@@ -13,7 +13,7 @@ export class JourneyService {
     @InjectModel(Bike.name) private bikeModel: Model<BikeDocument>,
     @InjectModel(Device.name) private deviceModel: Model<DeviceDocument>,
   ) {}
-
+  // create a journey and calculate calories if start/end time is set
   async create(createJourneyDto: CreateJourneyDto): Promise<Journey> {
     const { user_id, bike_id, device_id, startTime, endTime } =
       createJourneyDto;
@@ -44,7 +44,7 @@ export class JourneyService {
 
     return journey.save();
   }
-
+  // calculate calories based on time difference
   private calculateCalories(start?: Date, end?: Date): number {
     if (!start || !end) return 0;
     const minutes = Math.floor(
@@ -52,17 +52,20 @@ export class JourneyService {
     );
     return Math.max(0, minutes * 7);
   }
-
+  // get all journeys
   async findAll(): Promise<Journey[]> {
     return this.journeyModel.find({ deletedAt: { $exists: false } });
   }
-
+  // get journey by ID
   async findById(id: string): Promise<Journey> {
-    const journey = await this.journeyModel.findById(id);
+    const journey = await this.journeyModel.findOne({
+      _id: id,
+      deletedAt: { $exists: false },
+    });
     if (!journey) throw new NotFoundException('Journey not found');
     return journey;
   }
-
+  // soft delete journey by setting deletedAt
   async delete(id: string): Promise<Journey> {
     const journey = await this.journeyModel.findById(id);
     if (!journey) throw new NotFoundException('Journey not found');
@@ -70,7 +73,7 @@ export class JourneyService {
     journey.deletedAt = new Date();
     return journey.save();
   }
-
+  // Update calories in real-time (ping) based on time from start
   async pingCalories(id: string): Promise<Journey> {
     const journey = await this.journeyModel.findById(id);
     if (!journey) throw new NotFoundException('Journey not found');
@@ -84,6 +87,7 @@ export class JourneyService {
     journey.caloriesBurned = calories;
     return journey.save();
   }
+  // End journey by setting endTime and calculating final calories
   async endJourney(id: string, endTime: string): Promise<Journey> {
     const journey = await this.journeyModel.findById(id);
     if (!journey) throw new NotFoundException('Journey not found');

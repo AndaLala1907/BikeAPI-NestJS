@@ -1,5 +1,5 @@
 import { IsMongoId, IsNotEmpty, IsNumber } from 'class-validator';
-
+// DTO used for receiving ping data froma device
 export class PingDto {
   @IsMongoId()
   @IsNotEmpty()

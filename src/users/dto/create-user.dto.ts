@@ -5,7 +5,7 @@ import {
   Min,
   IsOptional,
 } from 'class-validator';
-
+// DTO for creating a new user
 export class CreateUserDto {
   @IsString()
   @IsNotEmpty()

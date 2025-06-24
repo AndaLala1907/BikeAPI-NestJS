@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-
-@Schema({ timestamps: true })
+// bike schema defintion with timestamp and soft delete
+@Schema({ timestamps: true }) //adds createdAt and updtedAt
 export class Bike {
   @Prop({ required: true })
   name: string;

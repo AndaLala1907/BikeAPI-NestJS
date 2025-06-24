@@ -2,8 +2,8 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
 export type DeviceStatus = 'paired' | 'unpaired';
-
-@Schema({ timestamps: true })
+// schema for device with soft delete and timestamps
+@Schema({ timestamps: true }) //adds createdAt and unpdatedAt
 export class Device {
   @Prop({ required: true })
   bike_id: string;
@@ -25,8 +25,6 @@ export class Device {
 
   @Prop({ type: Date, default: null })
   deletedAt?: Date;
-  @Prop({ default: false })
-  isActive: boolean;
 }
 
 export type DeviceDocument = Device & Document;

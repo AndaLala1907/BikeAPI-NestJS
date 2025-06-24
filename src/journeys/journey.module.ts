@@ -6,7 +6,7 @@ import { JourneyController } from './journey.controller';
 
 import { Device, DeviceSchema } from '../devices/schemas/device.schema';
 import { Bike, BikeSchema } from '../bikes/schemas/bike.schema';
-
+// module for managing journeys, with access to bikes and devices
 @Module({
   imports: [
     MongooseModule.forFeature([

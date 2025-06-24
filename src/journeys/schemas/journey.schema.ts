@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
-
-@Schema({ timestamps: true })
+// Mongoose schema for journey entity
+@Schema({ timestamps: true }) //adds createdAt and updatedAt
 export class Journey {
   @Prop({ type: Types.ObjectId, ref: 'User', required: true })
   user_id: Types.ObjectId;

@@ -1,5 +1,5 @@
 import { IsString, IsNotEmpty, IsIn, IsOptional } from 'class-validator';
-
+// DTO for creating a new device
 export class CreateDeviceDto {
   @IsString()
   @IsNotEmpty()

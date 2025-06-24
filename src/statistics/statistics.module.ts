@@ -16,4 +16,5 @@ import { Journey, JourneySchema } from '../journeys/schemas/journey.schema';
   controllers: [StatisticsController],
   providers: [StatisticsService],
 })
+// module to manage statistics logic and routes
 export class StatisticsModule {}
