@@ -2,6 +2,11 @@ BikeAPI-NestJS Backend
 
 BikeAPI is a modular backend system built with NestJS and MongoDB, designed to manage smart bicycles, devices, trips and user statistics.
 
+## Live Deployment
+
+-API Base URL: "https://bikeapi-nestjs.onrender.com"
+-Swagger Docs: "https://bikeapi-nestjs.onrender.com/api-docs"
+
 ## Technologies
 
 -NestJS (modular architecure)
